@@ -6,26 +6,46 @@ let maxPoints = 150;
 
 let attractors = [];
 let num = 25;
+let initialCond = 0.05;
+const initSlider = document.getElementById("initSlider");
+let sliderValue = document.getElementById("valueLabel");
 
 function setup() {
-  createCanvas(400, 400, WEBGL);
+  let canvas =  createCanvas(400, 420, WEBGL);
+  canvas.parent("container");
 
-  for (let i = 0; i < num; i++) {
-    let initCond = (i + 1) * 0.05;
-    let c = color(((i + 1) / num) * 255, 100, 255);
-    attractors.push(new Attractor(initCond, initCond, initCond, c));
-  }
+  init();
 }
 
 function draw() {
   background(0);
   orbitControl();
-  scale(5);
+  scale(5.5);
+
+  // console.log(initialCond);
 
   for (let i = 0; i < attractors.length; i++) {
     attractors[i].update();
     attractors[i].draw();
   }
+}
+
+function init() {
+  for (let i = 0; i < num; i++) {
+    let initCond = (i + 1) * initialCond;
+    let c = color(((i + 1) / num) * 255, 100, 255);
+    attractors.push(new Attractor(initCond, initCond, initCond, c));
+  }
+}
+initSlider.addEventListener("change", (e) => {
+  initialCond = e.target.value;
+  // console.log(initialCond);
+  attractors = [];
+  updateSliderValue();
+  init();
+});
+function updateSliderValue() {
+  sliderValue.innerHTML = initSlider.value;
 }
 
 // function windowResized() {
