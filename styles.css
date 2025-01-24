@@ -8,6 +8,7 @@ body {
   position: relative;
   text-align: center;
   color: white;
+  touch-action: none;
 }
 
 .container {
@@ -21,6 +22,7 @@ body {
   display: flex;
   align-items: start;
   justify-content: space-evenly;
+  touch-action: none;
 
 }
 
@@ -34,6 +36,7 @@ canvas {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  touch-action: none;
 
 
 }
